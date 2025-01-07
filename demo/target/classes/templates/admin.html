@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+  </head>
+  <body>
+    <h1>Admin Panel</h1>
+    <form action="/admin/add" method="post">
+      <label>Product Name: <input type="text" name="productName" /></label>
+      <label>Description: <input type="text" name="description" /></label>
+      <label>Price: <input type="number" step="0.01" name="price" /></label>
+      <label>Stock: <input type="number" name="stock" /></label>
+      <button type="submit">Add</button>
+    </form>
+    <ul>
+      <li th:each="product : ${products}">
+        <span th:text="${product.productName}"></span>
+        <form
+          th:action="@{/admin/delete/{id}(id=${product.productId})}"
+          method="post"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    </ul>
+  </body>
+</html>
